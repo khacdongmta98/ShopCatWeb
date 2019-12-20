@@ -1,0 +1,9 @@
+﻿@model IEnumerable<CatShop.Models.CatCustomModel>
+
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/_LayoutAdmin.cshtml";
+}
+
+@Html.Partial("~/Views/Partial/AdminPartial/_PartialListDataAdmin.cshtml", @Model);
+

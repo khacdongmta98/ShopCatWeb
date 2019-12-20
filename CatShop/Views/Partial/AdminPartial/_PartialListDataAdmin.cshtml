@@ -1,0 +1,135 @@
+﻿@model IEnumerable<CatShop.Models.CatCustomModel>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<div class="product-status mg-tb-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h4>Danh sách mèo trong cơ sở dữ liêụ</h4>
+                    <div class="add-product"><a type="button" href="#" data-target="#contact" data-toggle="modal">Add Data</a></div>
+                    <table id="dataAdmin">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Title</th>
+                                <th>Status</th>
+                                <th>Like</th>
+                                <th>Price</th>
+                                <th>Day ols</th>
+                                <th>Color</th>
+                                <th>Setting</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="@item.Id"  class="allcat">
+                                    <td><img src="~/@item.img" alt="" /></td>
+                                    <td>@item.LoaiMeo</td>
+                                    <td>
+                                        <button class="pd-setting">Active</button>
+                                    </td>
+                                    <td>@item.luot_like</td>
+                                    <td>@item.GiaBan</td>
+                                    <td>@item.Ngaytuoi</td>
+                                    <td>@item.MauSac</td>
+                                    <td>
+                                        <button data-target="#modalEdit" data-toggle="modal" class="btnEdit pd-setting-ed" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <button class="btnDelete pd-setting-ed"   title="Trash"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Title</th>
+                                <th>Status</th>
+                                <th>Like</th>
+                                <th>Price</th>
+                                <th>Day ols</th>
+                                <th>Color</th>
+                                <th>Setting</th>
+                            </tr>
+                        </tfoot>
+
+
+
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () { $('#dataAdmin').DataTable(); })
+</script>
+<script>
+
+    $('.btnDelete').on('click', function (x) {
+        x.preventDefault();
+        var idcat = $(this).closest('tr').attr('id');
+        setTimeout(100);
+        var parent = $(this).closest('tr');
+        alert(idcat);
+        $.ajax({
+            url: "DeleteCat",
+            type: "POST",
+            data: { id: idcat },
+            success: function (result) {
+
+                parent.remove();
+                alert(result);
+            },
+            error: function () {
+                alert('Không xóa được');
+            }
+
+        });
+    });
+
+    $('.btnEdit').on('click', function (x) {
+        x.preventDefault();
+        var idcat = $(this).closest('tr').attr('id');
+        setTimeout(100);
+        var parent = $(this).closest('tr');
+        alert(idcat);
+        $.ajax({
+            url: "../Home/GetOnlyCat",
+            type: "POST",
+            data: { IDCat: idcat },
+            success: function (result) {
+                //truyen du lieu vao modal edit
+                for (var i = 0 ; i < result.length ; i++) {
+                    $('#modalIdCat').attr('value', result[i].Id)
+                    $('#modalGiaban').attr('value', result[i].GiaBan)
+                    $('#modalNgaytuoi').attr('value', result[i].Id)
+                    $('#modalCannang').attr('value', result[i].Id)
+                    $('#modalDacdiem').val(result[i].Id)
+
+
+                    //doi anh
+                    $('#Image').attr('src', '../' + result[i].img)
+
+
+                    $("#modalLoaimeo").val(result[i].Ma_Loai);
+
+                }
+
+
+            },
+            error: function () {
+                alert('Không xóa được');
+            }
+
+        });
+    });
+
+
+</script>

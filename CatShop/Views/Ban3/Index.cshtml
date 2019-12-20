@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CatShop.Models.Blog>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sach Blog</h2>
+
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<div>
+    
+    
+    <table>
+        <thead>
+            <tr>
+                <td> Ảnh </td>
+                <td> Mã blog</td>
+                <td> Tiêu đề</td>
+                <td> Nội dung</td>
+                <td> Thời gian</td>
+                <td> Số lượt View</td>
+                <td> Xóa dữ liệu</td>
+                <td> Sửa dữ liệu</td>
+                <td> Thêm dữ liệu</td>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="~/Ban3/Getdetail/?id=@item.Ma_blog">
+                            <img src="~/@item.img" />
+                        </a>
+                    </td>
+                    <td>
+                        @item.Ma_blog
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.NoiDung
+                    </td>
+                    <td>
+                        @item.ThoiGian
+                    </td>
+                    <td>
+                        @item.slview
+                    </td>
+
+                    <td>
+                        <a href="~/ban3/Xoa/?id=@item.Ma_blog">
+                            Xoa du liêu
+                        </a>
+                    </td>
+                    <td>
+                        <a href="~/ban3/Update/?id=@item.Ma_blog">
+                            Sửa dữ liệu
+                        </a>
+
+                    </td>
+                    <td>
+                        <a href="~/ban3/Them/?id=@item.Ma_blog">
+                            Thêm dữ liệu
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+

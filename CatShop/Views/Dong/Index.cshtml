@@ -1,0 +1,126 @@
+﻿@model IEnumerable<CatShop.Models.Blog>
+@{
+    ViewBag.Title = "DanhSachSanPham";
+}
+<script src="~/Content/vendors/jquery/jquery-3.2.1.min.js"></script>
+
+
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<h2>DanhSachSanPham</h2>    
+<a href="~/Dong/logOut">LogOut</a>
+<div>
+
+    <table>
+        <thead>
+            <tr>
+                <td> Ảnh </td>
+                <td> Mã blog</td>
+                <td> Tiêu đề</td>
+                <td> Nội dung</td>
+                <td> Thời gian</td>
+                <td> Số lượt View</td>
+                @if (Session["check"].ToString() == "admin")
+                {
+                    <td> <button class="btnXoaDuLieu"> Xóa dữ liệu </button> </td>
+                    <td> <button class="btnSuaDuLieu">Sửa dữ liệu </button> </td>
+                    <td> Thêm dữ liệu</td>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="@item.Ma_blog">
+                    <td>
+                        <a href="~/dong/getdetail/?id=@item.Ma_blog">
+                            <img src="~/@item.img" />
+                        </a>
+                    </td>
+                    <td >
+                        @item.Ma_blog
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.NoiDung
+                    </td>
+                    <td>
+                        @item.ThoiGian
+                    </td>
+                    <td>
+                        @item.slview
+                    </td>
+                    @if (Session["check"].ToString() == "admin")
+                    {
+                        <td>
+                            <a href="~/dong/Xoa/?id=@item.Ma_blog">
+                                Xoa du liêu
+                            </a>
+                        </td>
+                        <td>
+                            <a href="~/dong/Update/?id=@item.Ma_blog">
+                                Sửa dữ liệu
+                            </a>
+
+                        </td>
+                        <td>
+                            <a href="~/dong/Them/?id=@item.Ma_blog">
+                                Thêm dữ liệu
+                            </a>
+                        </td>
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    $('.btnXoaDuLieu').on('click', function (x) {
+        x.preventDefault();
+        var idBlog = $(this).closest('tr').attr('id');
+        setTimeout(100);
+        var parent = $(this).closest('tr');
+        alert(idBlog);
+        $ajax(
+            {
+                url: "..Delele",
+                type: "POST",
+                data: { IDBlog: idBlog },
+                Success: function (result) {
+                    parent.remove();
+                    alert(result);
+                },
+                error: function () {
+                    alert("không xóa được");
+                }
+            });
+    });
+</script>
+ <script>
+     $('.btnSuaDuLieu').on('click', function (x) {
+         x.preventDefault();
+         var idBlog = $(this).closest('tr').attr('id');
+         setTimeout(100);
+         var parent = $(this).closest('tr');
+         alert(idBlog);
+         $ajax(
+             {
+               
+             });
+         
+     });
+     
+ </script>

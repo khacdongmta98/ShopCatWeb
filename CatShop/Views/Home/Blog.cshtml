@@ -1,0 +1,36 @@
+﻿@model CatShop.Models.MultiCustomModel
+
+@{
+    
+    Layout = "~/Views/_LayoutBlog.cshtml";
+}
+
+@Html.Partial("~/Views/Partial/BlogPartial/_Parital_Categorie.cshtml",Model.ModelCAT_BlogSection)
+@Html.Partial("~/Views/Partial/BlogPartial/_Partial_Blog.cshtml",Model.blogcat)
+
+
+<nav class="blog-pagination justify-content-center d-flex">
+    <ul class="pagination">
+        <li class="page-item">
+            <a href="#" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">
+                    <span class="lnr lnr-chevron-left"></span>
+                </span>
+            </a>
+        </li>
+        @for (var i = 1; i <= (int)ViewBag.PageNumber; i++)
+        {
+            <li class="page-item">
+                <a href="../Blog/?idBlog=@i" class="page-link">@i</a>
+            </li>
+        }
+        <li class="page-item">
+            <a href="#" class="page-link" aria-label="Next">
+                <span aria-hidden="true">
+                    <span class="lnr lnr-chevron-right"></span>
+                </span>
+            </a>
+        </li>
+
+    </ul>
+</nav>

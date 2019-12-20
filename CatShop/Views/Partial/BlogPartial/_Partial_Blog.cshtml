@@ -1,0 +1,239 @@
+﻿@model IEnumerable<CatShop.Models.Blog>
+
+<!--================Blog Area =================-->
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+
+                    @foreach(var item in Model)
+                    {
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Cat</a>
+                                    
+                                </div>
+                                <ul class="blog_meta list">
+                                    <li>
+                                        <a href="#">
+                                            @item.ThoiGian
+                                            <i class="lnr lnr-calendar-full"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            @item.slview
+                                            <i class="lnr lnr-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                             Comments
+                                            <i class="lnr lnr-bubble"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/@item.img" alt="">
+                                <div class="blog_details">
+                                    <a href="single-blog.html">
+                                        <h2>@item.Title</h2>
+                                    </a>
+                                    <p>
+                                        @item.NoiDung
+                                    </p>
+                                     <a class="button button-blog">
+                                            @Html.ActionLink("View More", "/ViewBlog", new { idBlog = item.Ma_blog }, new { @class = "button button-blog" })
+                                         
+                                        </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    }
+                </div>  
+             </div>       
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Posts">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="lnr lnr-magnifier"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget author_widget">
+                        <img class="author_img rounded-circle" src="~/Anh meo/Meo_ba_tu/25.jpg" style="width:120px;height:120px" alt="">
+                        <h4>Nam Nguyễn BLog</h4>
+                        <p>Bloger</p>
+                        <div class="social_icon">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
+                        <p>
+                            Như các bạn đã biết đây là một blog nói về chủ để những chú mèo thú cứng của chúng ta với nhiều chủ điểm thú vị
+                            mọi người có thể đọc qua các chủ điểm bên dưới !!!
+                        </p>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Bài viết phổ biến</h3>
+                        @foreach (var item in Model)
+                        {
+                        <div class="media post_item">
+                            <img src="~/@item.img" style="width:100px;height:60px" alt="post">
+                            <div class="media-body">
+                                <a href="single-blog.html">
+                                    <h3> Best Cat </h3>
+                                </a>
+                                <p>@item.ThoiGian</p>
+                            </div>
+                        </div>
+                        }
+
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget ads_widget">
+                        <a href="#">
+                            
+                            <img class="img-fluid" src="~/Anh meo/Meo_ba_tu/26.jpg" style="width:300px;height:250px" alt="">
+                        </a>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Chủ điểm liên quan</h4>
+                        <ul class="list cat-list">
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Technology</p>
+                                    <p>37</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Lifestyle</p>
+                                    <p>24</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Fashion</p>
+                                    <p>59</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Beautiful Cat</p>
+                                    <p>29</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Food</p>
+                                    <p>15</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Dog</p>
+                                    <p>09</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Adventure</p>
+                                    <p>44</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single-sidebar-widget newsletter_widget">
+                        <h4 class="widget_title">Bản tin mới nhất</h4>
+                        <p>
+                            Ở đây, tôi tập trung vào một loạt các vật phẩm và tính năng mà chúng ta sử
+                            dụng trong cuộc sống mà không cho chúng một ý nghĩ thứ hai
+
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email address" onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'Enter email'">
+                            </div>
+                            <a href="#" class="bbtns">Subcribe</a>
+                        </div>
+                        <p class="text-bottom">You can unsubscribe at any time</p>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single-sidebar-widget tag_cloud_widget">
+                        <h4 class="widget_title">Chủ đề</h4>
+                        <ul class="list">
+                            <li>
+                                <a href="#">Technology</a>
+                            </li>
+                            <li>
+                                <a href="#">Fashion</a>
+                            </li>
+                            <li>
+                                <a href="#">Dog</a>
+                            </li>
+                            <li>
+                                <a href="#">Fashion</a>
+                            </li>
+                            <li>
+                                <a href="#">Food</a>
+                            </li>
+                            <li>
+                                <a href="#">Technology</a>
+                            </li>
+                            <li>
+                                <a href="#">Lifestyle</a>
+                            </li>
+                            <li>
+                                <a href="#">Art</a>
+                            </li>
+                            <li>
+                                <a href="#">Dog</a>
+                            </li>
+                            <li>
+                                <a href="#">Food</a>
+                            </li>
+                            <li>
+                                <a href="#">Lifestyle</a>
+                            </li>
+                            <li>
+                                <a href="#">Adventure</a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

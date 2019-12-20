@@ -1,0 +1,132 @@
+﻿
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="~/Content/vendors/jquery/jquery-3.2.1.min.js"></script>
+
+<div class="container">
+<div class="row">
+    <br/><br/><br/>
+
+        <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Chinh sua thong tin meo.</h4>
+                    </div>
+                    <form action="#" method="post" accept-charset="utf-8" id="myFormEdit">
+                    <div class="modal-body" style="padding: 5px;">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input id="modalIdCat" value="" class="form-control" name="Id" placeholder="Mã mèo" type="text" readonly/>
+                                </div>
+                            </div>
+                          <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                    <select id="modalLoaimeo" name="LoaiMeo" style="border: 1px solid #ccc;
+                                                                           font-size: 16px;
+                                                                           height: 34px;
+                                                                           width: 268px;">
+                                        <option value="" style="display:none;">Chọn loại mèo</option>
+                                        <option value="ML01">Mèo anh lông dài</option>
+                                        <option value="ML02">Mèo anh lông ngắn</option>
+                                        <option value="ML03">Mèo ba tư</option>
+                                        <option value="ML04">Mèo mướp</option>
+                                        <option value="ML05">Mèo vàng</option>
+                                        <option value="ML06">Mèo tai cụp việt nam</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                    <input id="modalGiaban" value="" class="form-control" name="GiaBan" placeholder="Gia ban" type="text" required />
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input id="modalNgaytuoi" value="" class="form-control" name="Ngaytuoi" placeholder="Ngay tuoi" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input id="modalCannang" value="" class="form-control" name="CanNang" placeholder="Can nang" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <textarea id="modalDacdiem" aria-valuetext="" style="resize:vertical;" class="form-control" placeholder="DacDiemNoiBat" rows="6" name="DacDiemNoiBat" required></textarea>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <span class="row">
+                                <span class="col-lg-12 col-md-12 col-sm-12">
+                                    Chọn hình ảnh : <input type="file" id="inputImage" value="Chon hinh anh" name="Image" />
+                                    <img id="Image" src=""/>
+                                </span>
+                            </span>
+                          
+                        <div class="panel-footer" style="margin-bottom:-14px;">
+                            <input type="submit" class="btn btn-success" value="Send" id="btn-edit"/>
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                            <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+     </div>
+
+
+</div>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#Image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#inputImage").change(function () {
+            readURL(this);
+        });
+
+
+        $(document).ready(function () {
+
+            $("#btn-edit").click(function () {
+                alert('ham edit');
+                var form = document.querySelector('#myFormEdit');
+                var fd = new FormData(form);
+                var image = $('#inputImage')[0].files;
+                fd.append("fileImage", image[0]);
+                $.ajax({
+                    url: '/Admin/ModalEdit',
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response != 0) {                            
+                            alert(response);
+                        } else {
+                            ert('file not uploaded');al
+                        }
+                    },
+                    error: function () {
+                        alert('loi me roi');
+                    }
+                });
+            });
+        });
+    </script>
+ <script src="~/AdminContent/js/ScriptModal.js"></script>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Them";
+}
+
+<h2>Them</h2>
+
+<h2>Insert</h2>
+<div>
+    <div class="contain">
+        <form class="form" action="them" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" name="id" placeholder="Nhập Mã blog:" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="title" placeholder="Nhập title" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="noidung" placeholder="Nhập nội dung" : />
+            </div>
+
+            <div class="row">
+                <div>
+                    Chọn hình ảnh
+                    <input type="file" name="filename" />
+                </div>
+            </div>
+            <div class="button button-btn">
+                <input type="submit" value="Thêm mới" />
+            </div>
+        </form>
+    </div>
+</div>

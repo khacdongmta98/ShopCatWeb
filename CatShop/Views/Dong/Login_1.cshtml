@@ -1,0 +1,13 @@
+﻿@model CatShop.Models.Account
+@{
+    ViewBag.Title = "Login_1";
+}
+
+<h2>Login_1</h2>
+@using (Html.BeginForm())
+{
+    <p>    Name: @Html.TextBoxFor(m => m.TaiKhoan) </p>
+    <p>PassWord: @Html.PasswordFor(m=> m.MatKhau)</p>
+    <input type="submit" value="Login"/>
+   
+}

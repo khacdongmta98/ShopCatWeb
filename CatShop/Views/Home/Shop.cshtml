@@ -1,0 +1,9 @@
+﻿@model CatShop.Models.MultiCustomModel
+
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/_LayoutShopCatagory.cshtml";
+}
+
+@Html.Partial("~/Views/Partial/ShopPartial/_PartialSectionStart.cshtml",Model.Shop_SectionStart)
+@Html.Partial("~/Views/Partial/ShopPartial/_PartialProduct.cshtml",Model.Product);

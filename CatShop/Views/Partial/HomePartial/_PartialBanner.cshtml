@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CatShop.Models.Blog>
+
+<script src="~/Content/vendors/jquery/jquery-3.2.1.min.js"></script>
+<link href="~/Content/css/defaultSize.css" rel="stylesheet" />
+
+<section class="hero-banner">
+      <div class="container">
+        <div class="row no-gutters align-items-center pt-60px">
+          <div class="col-5 d-none d-sm-block">
+            <div class="hero-banner__img">
+  
+              <img class="img-fluid" src=@Model.ElementAtOrDefault(1).img alt="" style="width:500px;height:400px">
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+            <div class="hero-banner__content">
+              <h4>Shop is fun</h4>
+              <h1>@Model.FirstOrDefault().Title</h1>
+              <p>@Model.FirstOrDefault().NoiDung</p>
+              <a class="button button-hero" href="#">Browse Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<script>
+
+    $('.img-fluid').each(function (e) {
+        
+    });
+</script>
